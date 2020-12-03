@@ -32,15 +32,30 @@ class App extends Component {
     this.setState({habits});
   };
 
+  hadleAdd = (name) => {
+    //항상 복사를 해와야 한다.
+    const habits = [this.state.habits, {id: Date.now(), name: name, count: 0}];
+    this.setState({habits});
+  };
+
+  handleReset = () => {
+    const habits = this.state.habits.map(habit=>{
+      habit.count=0;
+      return habit;
+    });
+    this.setState({habits});
+  }
+
   render() {
     return (
       <>
-        <Navbar totalCount = {this.state.habit.filter(item => item.count > 0).length}/>
+        <Navbar totalCount = {this.state.habits.filter(item => item.count > 0).length}/>
         <Habits 
           habits = {this.state.habits}
           onIncrement = {this.handleIncrement} 
           onDecrement = {this.handleDecrement}
           onDelete = {this.handleDelete}
+          onReset={this.handleReset}
         />
       </>
     );
