@@ -13,7 +13,7 @@ const SimpleHabit = (props) => {
 
   useEffect(()=> {
     console.log(`mounted & updated! : ${count}`);
-  }, []);
+  }, [count]);
   
   return (
     <li className="habit">
